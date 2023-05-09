@@ -1,0 +1,10 @@
+<h1>My Bookmarks</h1>
+
+
+<ul>
+  <% @bookmarks.each do |bookmark|  %>
+    <li>
+     <%= bookmark.comment %>
+     </li>
+  <% end  %>
+ </ul>
