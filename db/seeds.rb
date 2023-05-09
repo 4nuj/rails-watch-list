@@ -53,32 +53,34 @@ require 'faker'
 
 require 'faker'
 
-# # Create 10 movies
-# 10.times do
-#   title = Faker::Movie.title
-#   while Movie.exists?(title: title)
-#     title = Faker::Movie.title
-#   end
-#   Movie.create!(
-#     title: title,
-#     overview: Faker::Lorem.sentence(word_count: 20),
-#     poster_url: Faker::Internet.url,
-#     rating: rand(1..10)
-#   )
-# end
 
-# # Create 10 unique list names
-# list_names = []
-# 10.times do
-#   name = Faker::Book.genre
-#   while list_names.include?(name)
-#     name = Faker::Book.genre
-#   end
-#   list_names << name
-#   List.create!(
-#     name: name
-#   )
-# end
+
+# Create 10 movies
+10.times do
+  title = Faker::Movie.title
+  while Movie.exists?(title: title)
+    title = Faker::Movie.title
+  end
+  Movie.create!(
+    title: title,
+    overview: Faker::Lorem.sentence(word_count: 20),
+    poster_url: Faker::Internet.url,
+    rating: rand(1..10)
+  )
+end
+
+# Create 10 unique list names
+list_names = []
+10.times do
+  name = Faker::Book.genre
+  while list_names.include?(name)
+    name = Faker::Book.genre
+  end
+  list_names << name
+  List.create!(
+    name: name
+  )
+end
 
 10.times do
   Movie.all.each do |movie|
@@ -86,9 +88,9 @@ require 'faker'
       comment: Faker::Lorem.words(number: rand(5..10)),
       movie_id: movie.id
     )
-    List.all.each do |list|
-      bookmark.list_id = list.id
-    end
-    bookmark.save!
   end
+  List.all.each do |list|
+    bookmark.list_id = list.id
+  end
+  bookmark.save!
 end
